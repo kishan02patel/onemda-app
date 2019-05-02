@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+}
+
+  .participantList__participants {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .participantList__participant {
+    margin: 2px;
+    padding: 2px;
+  }
+
+  .content{
+    width: 80%;
+    margin: 0 auto;
+
+  }
