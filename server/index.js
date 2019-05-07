@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 require('dotenv').config();
 import schema from "./graphql/";
+const jwt = require('express-jwt')
 
 const app = express();
 
@@ -23,14 +24,23 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.log(err));
 
+  const auth = jwt({
+    secret: process.env.JWT_TOKEN,
+    credentialsRequired: false
+  })
+
   app.use(
     "/graphql",
     cors(),
     bodyParser.json(),
-    expressGraphQL({
+    auth,
+    expressGraphQL(req => ({
       schema,
-      graphiql: true
-    })
+      graphiql: true,
+      context: {
+        user: req.user
+      }
+    }))
   );
   
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

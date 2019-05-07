@@ -1,10 +1,6 @@
-import { mergeTypes } from "merge-graphql-schemas";
-
 import User from "./User/";
 import Participant from "./Participant/";
+import Authentication from "./Authentication"
 
-const resolvers = [User, Participant];
-
+const resolvers = [User, Participant, Authentication];
 export default resolvers
-
-// mergeTypes(resolvers, { all: true });
