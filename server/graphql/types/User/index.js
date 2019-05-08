@@ -7,13 +7,10 @@ export default `
     user(id: String!): User
     users: [User]
     hello: String
-    me: User
   }
   type Mutation {
-    addUser(email: String!): User
-    editUser(id: String, email: String): User
+    createUser(email: String!, password: String!, roles: [Role]): User
+    editUser(id: String, email: String, password: String, roles: [Role]): User
     deleteUser(id: String): User
-    signup (email: String!, password: String!): String
-    login (email: String!, password: String!): String
   }
 `;

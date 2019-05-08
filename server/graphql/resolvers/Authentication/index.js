@@ -10,6 +10,14 @@ export default {
         throw new Error('You are not authenticated')
       }
       return await User.findById(user.id)
+    },
+    async roles (_, args, { user }) {
+      if (!user) {
+        throw new Error('You are not authenticated')
+      }
+
+      const eUser = await User.findById(user.id)
+      return eUser.roles
     }
   },
   Mutation: {

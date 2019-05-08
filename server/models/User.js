@@ -2,11 +2,12 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const Roles = Object.freeze({
+export const Role = Object.freeze({
   Admin: 'admin',
   Supporter: 'supporter',
   Participant: 'participant',
-  Trainer: 'trainer'
+  Trainer: 'trainer',
+  None: 'none'
 })
 
 // Create the User Schema.
@@ -22,8 +23,8 @@ const UserSchema = new Schema({
   },
   roles: {
     type: [String],
-    enum: Object.values(Roles),
-    default: [Roles.Participant],
+    enum: Object.values(Role),
+    default: [Role.Participant],
     required: true
   }
 }, {collection: 'users'});
