@@ -15,8 +15,8 @@ export default {
   },
   Mutation: {
     async createService (root, { name }, { user }) {
-      const isAdmin2 = await isAdmin(user)
-      if (!isAdmin2) {
+      const isUserAdmin = await isAdmin(user)
+      if (!isUserAdmin) {
         throw Error('You must be a logged in admin to create a user')
       }
 

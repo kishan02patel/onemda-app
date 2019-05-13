@@ -33,8 +33,8 @@ export default {
   },
   Mutation: {
     async createUser (root, { email, password, roles }, { user }) {
-      const isAdmin2 = await isAdmin(user)
-      if (!isAdmin2) {
+      const isUserAdmin = await isAdmin(user)
+      if (!isUserAdmin) {
         throw Error('You must be a logged in admin to create a user')
       }
 
@@ -47,8 +47,8 @@ export default {
       });
     },
     async editUser (root, { id, email, password, roles }, { user }) {
-      const isAdmin2 = await isAdmin(user)
-      if (!isAdmin2) {
+      const isUserAdmin = await isAdmin(user)
+      if (!isUserAdmin) {
         throw Error('You must be a logged in admin to edit a user')
       }
 
