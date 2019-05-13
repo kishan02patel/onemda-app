@@ -13,7 +13,7 @@ const ActivitySchema = new Schema({
     ref: 'Service',
     required: true
   }
-}, {collection: "activities"})
+}, {collection: "activities", timestamps: true})
 
 const Activity = mongoose.model("Activity", ActivitySchema)
 

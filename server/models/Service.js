@@ -9,7 +9,7 @@ const ServiceSchema = new Schema({
     required: true,
     unique: true,
   },
-}, {collection: 'services'});
+}, {collection: 'services', timestamps:true});
 
 const Service = mongoose.model("Service", ServiceSchema);
 

@@ -27,7 +27,7 @@ const UserSchema = new Schema({
     default: [Role.Participant],
     required: true
   }
-}, {collection: 'users'});
+}, {collection: 'users', timestamps: true});
 
 const User = mongoose.model("User", UserSchema);
 
