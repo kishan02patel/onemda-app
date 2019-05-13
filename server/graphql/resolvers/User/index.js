@@ -1,7 +1,7 @@
 // The User schema.
 import User from "../../../models/User";
 
-async function isAdmin(user) {
+export async function isAdmin(user) {
   if (!user) {
     return false
   }

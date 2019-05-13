@@ -1,6 +1,6 @@
 import User from "./User/";
-import Participant from "./Participant/";
+import Service from "./Service/";
 import Authentication from "./Authentication"
 
-const resolvers = [User, Participant, Authentication];
+const resolvers = [User, Service, Authentication];
 export default resolvers

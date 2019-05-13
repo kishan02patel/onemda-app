@@ -2,9 +2,9 @@
 import { mergeTypes } from "merge-graphql-schemas";
 
 import User from "./User/";
-import Participant from "./Participant";
+import Service from "./Service";
 import Authentication from "./Authentication";
 
-const typeDefs = [User, Participant, Authentication];
+const typeDefs = [User, Service, Authentication];
 
 export default mergeTypes(typeDefs, { all: true });
