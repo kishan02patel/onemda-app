@@ -4,7 +4,7 @@ import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
 const SERVICES_QUERY = gql`
-  {
+  query services {
     services {
       id
       name

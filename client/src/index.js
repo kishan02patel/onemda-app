@@ -9,13 +9,28 @@ import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { BrowserRouter as Router } from 'react-router-dom'
 
+const cache = new InMemoryCache()
+
+const token = localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : null
+
+const headers = token ? {
+  Authorization: token
+} : {}
+
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000/graphql'
+  uri: 'http://localhost:4000/graphql',
+  headers
 })
 
 const client = new ApolloClient({
+  cache,
   link: httpLink,
-  cache: new InMemoryCache()
+})
+
+cache.writeData({
+  data: {
+    isLoggedIn: !!localStorage.getItem('token')
+  }
 })
 
 ReactDOM.render(

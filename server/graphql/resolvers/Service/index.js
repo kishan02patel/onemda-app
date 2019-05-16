@@ -3,7 +3,7 @@ import { isAdmin } from "../User/index"
 
 export default {
   Query: {
-    services: () => {
+    async services (root, args, { user }) {
       return new Promise((resolve, reject) => {
         Service.find({})
           .populate()

@@ -3,7 +3,7 @@ import Services from './Services'
 import LoginScreen from '../screens/Login'
 import NavBar from './NavBar'
 import '../styles/App.css'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 
 class App extends Component {
   render() {
@@ -20,4 +20,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default withRouter(App)
