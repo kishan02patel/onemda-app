@@ -1,13 +1,21 @@
 import React, { Component } from 'react'
 import Services from './Services'
+import LoginScreen from '../screens/Login'
+import NavBar from './NavBar'
 import '../styles/App.css'
+import { Route, Switch } from 'react-router-dom'
 
 class App extends Component {
   render() {
     return (
-      <div className="content">
-        <Services></Services>
-      </div>
+      <main>
+        <NavBar/>
+        <Switch>
+          <Route exact path="/" component={LoginScreen} />
+          <Route exact path="/login" component={LoginScreen} />  
+          <Route exact path="/services" component={Services} />
+        </Switch>
+      </main>
     )
   }
 }
