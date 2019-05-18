@@ -1,0 +1,38 @@
+defaults: &defaults #working_directory: ./circleci
+  docker:
+    - image: circleci/node:11
+version: 2.1
+jobs:
+  prepare-server:
+    <<: *defaults
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "server/yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: cd server && yarn install --frozen-lockfile
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "server/yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+  deploy-server:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Deploy Master to Heroku
+          command: |
+            git push https://heroku:$REACT_APP_HEROKU_API_KEY@git.heroku.com/$REACT_APP_HEROKU_APP_NAME.git master
+workflows:
+  build-test-deploy-server:
+    jobs:
+      - prepare-server
+      - deploy-server:
+          filters:
+            branches:
+              only: master
