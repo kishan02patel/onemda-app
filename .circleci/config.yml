@@ -27,7 +27,7 @@ jobs:
       # Download and cache dependencies
       - run:
           name: Build with babel
-          command: cd server && node_modules/.bin/babel src --out-dir dist
+          command: cd server/node_modules/.bin && ls
   deploy-server:
     <<: *defaults
     steps:
