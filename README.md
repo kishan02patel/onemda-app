@@ -1,4 +1,4 @@
-# Onemda server 
+# Onemda server
 
 This is the onemda feedback application. This has been developed by the team-onemda at RHOK Melbourne Winter hackathon.
 
@@ -47,5 +47,11 @@ yarn
 ### Running the app
 
 ```
-npm run server
+yarn start
+```
+
+OR
+
+```
+yarn run server
 ```
