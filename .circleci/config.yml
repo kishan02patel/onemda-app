@@ -14,7 +14,7 @@ jobs:
             - yarn-packages-{{ checksum "server/yarn.lock" }}
       - run:
           name: Install Dependencies
-          command: cd server && yarn install --frozen-lockfile
+          command: cd server && yarn install --frozen-lockfile && cd node_modules/.bin && ls
       - save_cache:
           name: Save Yarn Package Cache
           key: yarn-packages-{{ checksum "server/yarn.lock" }}
@@ -27,7 +27,7 @@ jobs:
       # Download and cache dependencies
       - run:
           name: Build with babel
-          command: cd server/node_modules/.bin && ls
+          command: ls
   deploy-server:
     <<: *defaults
     steps:
