@@ -46,7 +46,8 @@ jobs:
             # git config user.name "Kishan Patel"
             # git commit -m "New push"
             # git push -f https://heroku:$REACT_APP_HEROKU_API_KEY@git.heroku.com/$REACT_APP_HEROKU_APP_NAME.git master
-            git subtree push --prefix server https://heroku:$NODE_APP_HEROKU_API_KEY@git.heroku.com/$NODE_APP_HEROKU_APP_NAME.git master
+            # git subtree push --prefix server https://heroku:$NODE_APP_HEROKU_API_KEY@git.heroku.com/$NODE_APP_HEROKU_APP_NAME.git master
+            git push https://heroku:$NODE_APP_HEROKU_API_KEY@git.heroku.com/$NODE_APP_HEROKU_APP_NAME.git `git subtree split --prefix server ci/cd`:master --force
 workflows:
   build-test-deploy-server:
     jobs:
