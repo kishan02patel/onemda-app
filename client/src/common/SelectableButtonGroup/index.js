@@ -12,7 +12,9 @@ class SelectableButtonGroup extends Component {
 
   handleSelect = (id) => {
     this.setState({selectedID: id})
-    this.props.handleSelect({id: this.props.id, selectedID: id, value: this.props.values[id]})
+    this.props.handleSelect({
+      type: "select", 
+      id: this.props.id, selectedID: id, value: this.props.values[id]})
   }
 
   render() {
