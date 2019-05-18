@@ -48,7 +48,9 @@ workflows:
   build-test-deploy-server:
     jobs:
       - prepare-server
-      - build-server
+      - build-server:
+          requires:
+            - prepare-server
       - deploy-server:
           requires:
             - prepare-server
