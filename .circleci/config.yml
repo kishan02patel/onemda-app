@@ -21,9 +21,7 @@ jobs:
           paths:
             - ~/.cache/yarn
   deploy-server:
-    docker:
-      - image: buildpack-deps:trusty
-      - image: circleci/node:11
+    <<: *defaults
     steps:
       - checkout
       - run:
@@ -33,6 +31,8 @@ jobs:
             git init
             echo 'node_modules' > .gitignore
             git add .
+            git config user.email "kishan02patel@gmail.com"
+            git config user.name "Kishan Patel"
             git commit -m "New push"
             git push https://heroku:$REACT_APP_HEROKU_API_KEY@git.heroku.com/$REACT_APP_HEROKU_APP_NAME.git master
 workflows:
