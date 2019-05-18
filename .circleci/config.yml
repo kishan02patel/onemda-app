@@ -43,8 +43,8 @@ jobs:
             rm package-lock.json
             ls
             cd ..
-            # git push https://heroku:$NODE_APP_HEROKU_API_KEY@git.heroku.com/$NODE_APP_HEROKU_APP_NAME.git `git subtree split --prefix server ci/cd`:master --force
-            git subtree push --prefix server https://heroku:$NODE_APP_HEROKU_API_KEY@git.heroku.com/$NODE_APP_HEROKU_APP_NAME.git master
+            git push https://heroku:$NODE_APP_HEROKU_API_KEY@git.heroku.com/$NODE_APP_HEROKU_APP_NAME.git `git subtree split --prefix server master`:master --force
+            # git subtree push --prefix server https://heroku:$NODE_APP_HEROKU_API_KEY@git.heroku.com/$NODE_APP_HEROKU_APP_NAME.git master
 
 workflows:
   build-test-deploy-server:
