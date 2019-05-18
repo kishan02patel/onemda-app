@@ -14,20 +14,20 @@ jobs:
             - yarn-packages-{{ checksum "server/yarn.lock" }}
       - run:
           name: Install Dependencies
-          command: cd server && yarn install --frozen-lockfile
+          command: cd server && yarn install --frozen-lockfile && babel src --out-dir dist
       - save_cache:
           name: Save Yarn Package Cache
           key: yarn-packages-{{ checksum "server/yarn.lock" }}
           paths:
             - ~/.cache/yarn
-  build-server:
-    <<: *defaults
-    steps:
-      - checkout
-      # Download and cache dependencies
-      - run:
-          name: Build with babel
-          command: cd server && babel src --out-dir dist
+  # build-server:
+  #   <<: *defaults
+  #   steps:
+  #     - checkout
+  #     # Download and cache dependencies
+  #     - run:
+  #         name: Build with babel
+  #         command: cd server && babel src --out-dir dist
   deploy-server:
     <<: *defaults
     steps:
@@ -48,13 +48,13 @@ workflows:
   build-test-deploy-server:
     jobs:
       - prepare-server
-      - build-server:
-          requires:
-            - prepare-server
+      # - build-server:
+      #     requires:
+      #       - prepare-server
       - deploy-server:
           requires:
             - prepare-server
-            - build-server
+            # - build-server
           filters:
             branches:
               only: master
