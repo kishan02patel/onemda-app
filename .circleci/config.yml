@@ -21,18 +21,20 @@ jobs:
           paths:
             - ~/.cache/yarn
   deploy-server:
-    <<: *defaults
+    docker:
+      - image: buildpack-deps:trusty
     steps:
       - checkout
       - run:
-          name: Deploy Master to Heroku
+          name: Deploy to Heroku
           command: |
-            git push https://heroku:$REACT_APP_HEROKU_API_KEY@git.heroku.com/$REACT_APP_HEROKU_APP_NAME.git master
+            git push https://heroku:$REACT_APP_HEROKU_API_KEY@git.heroku.com/$REACT_APP_HEROKU_APP_NAME.git ci/cd:master
 workflows:
   build-test-deploy-server:
     jobs:
       - prepare-server
-      - deploy-server:
-          filters:
-            branches:
-              only: master
+      - deploy-server
+      # - deploy-server:
+          # filters:
+          #   branches:
+          #     only: master
