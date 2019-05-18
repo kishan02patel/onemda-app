@@ -1,11 +1,13 @@
-import express from "express";
-import expressGraphQL from "express-graphql";
-import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import cors from "cors";
+import express from "express";
+import expressGraphQL from "express-graphql";
+import jwt from "express-jwt";
+import mongoose from "mongoose";
+
 require('dotenv').config();
+
 import schema from "./graphql/";
-const jwt = require('express-jwt')
 
 const app = express();
 
@@ -42,5 +44,5 @@ mongoose
       }
     }))
   );
-  
+
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
