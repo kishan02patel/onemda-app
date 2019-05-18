@@ -23,12 +23,18 @@ jobs:
   deploy-server:
     docker:
       - image: buildpack-deps:trusty
+      - image: circleci/node:11
     steps:
       - checkout
       - run:
           name: Deploy to Heroku
           command: |
-            git push https://heroku:$REACT_APP_HEROKU_API_KEY@git.heroku.com/$REACT_APP_HEROKU_APP_NAME.git ci/cd:master
+            cd server
+            git init
+            echo 'node_modules' > .gitignore
+            git add .
+            git commit -m "New push"
+            git push https://heroku:$REACT_APP_HEROKU_API_KEY@git.heroku.com/$REACT_APP_HEROKU_APP_NAME.git master
 workflows:
   build-test-deploy-server:
     jobs:
