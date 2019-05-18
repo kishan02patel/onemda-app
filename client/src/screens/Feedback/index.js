@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import FilterList from '../../components/FilterList'
-import SelectableButtonGroup from '../../common/SelectableButtonGroup'
 import { Query, Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 import './styles.scss'
-import { EngagmentSelector } from './EngagementSelector';
+import { EngagmentSelector } from '../../components/EngagementSelector';
 import { Formik } from 'formik';
 
 

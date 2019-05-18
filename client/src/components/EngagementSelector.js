@@ -1,5 +1,5 @@
 import React from "react"; 
-import SelectableButtonGroup from "../../common/SelectableButtonGroup";
+import SelectableButtonGroup from "../common/SelectableButtonGroup";
 const Engagement = Object.freeze({
     Low: 'Low',
     Minimal: 'Minimal',
