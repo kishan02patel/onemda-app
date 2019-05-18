@@ -6,18 +6,18 @@ import NavBar from './NavBar'
 import '../styles/App.css'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import { TrainerFeedback } from '../screens/Feedback/TrainerFeedback';
-
+import * as Routes from "./NavBar/routes"; 
 class App extends Component {
   render() {
     return (
       <main>
         <NavBar/>
         <Switch>
-          <Route exact path="/" component={LoginScreen} />
-          <Route exact path="/login" component={LoginScreen} />  
-          <Route exact path="/services" component={Services} />
-          <Route exact path="/feedback" component={FeedbackScreen} />
-          <Route exact path="/trainerfeedback" component={TrainerFeedback} />
+          <Route exact path={Routes.HOME} component={LoginScreen} />
+          <Route exact path={Routes.LOGIN} component={LoginScreen} />  
+          <Route exact path={Routes.SERVICES} component={Services} />
+          <Route exact path={Routes.FEEDBACK} component={FeedbackScreen} />
+          <Route exact path={Routes.TRAINER_FEEDBACK} component={TrainerFeedback} />
 
         </Switch>
       </main>
