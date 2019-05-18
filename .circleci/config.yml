@@ -20,6 +20,14 @@ jobs:
           key: yarn-packages-{{ checksum "server/yarn.lock" }}
           paths:
             - ~/.cache/yarn
+  build-server:
+    <<: *defaults
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - run:
+          name: Build with babel
+          command: cd server && babel src --out-dir dist
   deploy-server:
     <<: *defaults
     steps:
@@ -40,10 +48,11 @@ workflows:
   build-test-deploy-server:
     jobs:
       - prepare-server
+      - build-server
       - deploy-server:
           requires:
             - prepare-server
-      # - deploy-server:
-          # filters:
-          #   branches:
-          #     only: master
+            - build-server
+          filters:
+            branches:
+              only: master
