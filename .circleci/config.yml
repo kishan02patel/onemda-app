@@ -15,6 +15,7 @@ jobs:
       - run:
           name: Install Dependencies
           command: cd server && yarn install --frozen-lockfile
+      # Build with babel and put static files to dist folder
       - run:
           name: Build with babel
           command: cd server && node_modules/.bin/babel src --out-dir dist
@@ -30,22 +31,12 @@ jobs:
       - run:
           name: Deploy to Heroku
           command: |
-            # cd server
-            # git init
-            # echo 'node_modules' > .gitignore
-            # git add .
-            # git config user.email "kishan02patel@gmail.com"
-            # git config user.name "Kishan Patel"
-            # git commit -m "New push"
-            # git push -f https://heroku:$REACT_APP_HEROKU_API_KEY@git.heroku.com/$REACT_APP_HEROKU_APP_NAME.git master
-            # git subtree push --prefix server https://heroku:$NODE_APP_HEROKU_API_KEY@git.heroku.com/$NODE_APP_HEROKU_APP_NAME.git master
             rm server/package-lock.json
-            git add .
+            git add server/package-lock.json
             git config user.email "dummy@dummy.com"
             git config user.name "dummy dummy"
             git commit -m "Remove package-lock.json"
             git push https://heroku:$NODE_APP_HEROKU_API_KEY@git.heroku.com/$NODE_APP_HEROKU_APP_NAME.git `git subtree split --prefix server master`:master --force
-            # git subtree push --prefix server https://heroku:$NODE_APP_HEROKU_API_KEY@git.heroku.com/$NODE_APP_HEROKU_APP_NAME.git master
 
 workflows:
   build-test-deploy-server:
